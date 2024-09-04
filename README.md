@@ -8,4 +8,4 @@ This project is based on the following Udemy Course [The Ultimate React Course 2
 
 ### UI 
 
-![The UI](./public/eat-n-split-ui.png “UI-picture”)
+![The UI](https://raw.githubusercontent.com/slevinas/React-Split-Bill/main/public/eat-n-split-ui.png)
