@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Eat-n-Split
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was base on the following Udemy Course [The Ultimate React Course 2024](https://www.udemy.com/course/the-ultimate-react-course).
 
 ## Available Scripts
 
