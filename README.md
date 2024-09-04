@@ -8,4 +8,4 @@ This project is based on the following Udemy Course [The Ultimate React Course 2
 
 ### UI 
 
-![The UI](react-apps/eat-n-split/eat-n-split/public/eat-n-split-ui.png “UI-picture”)
+![The UI](./public/eat-n-split-ui.png “UI-picture”)
