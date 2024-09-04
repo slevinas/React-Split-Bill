@@ -1,6 +1,6 @@
 # Eat-n-Split
 
-This project was base on the following Udemy Course [The Ultimate React Course 2024](https://www.udemy.com/course/the-ultimate-react-course).
+This project is base on the following Udemy Course [The Ultimate React Course 2024](https://www.udemy.com/course/the-ultimate-react-course).
 
 ## Available Scripts
 
