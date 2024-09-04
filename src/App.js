@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 const initialFriends = [
   {
@@ -22,12 +23,27 @@ const initialFriends = [
 
 
 export default function App() {
+  const [friends, setFriends] = useState(initialFriends);
+  const [showAddFriend, setShowAddFriend] = useState(false);
+
+  function handleShowFriend() {
+    setShowAddFriend((showAddFriend) => !showAddFriend);
+  }
+
+  function handleAddFriend(friend) {
+    setFriends((friends) => [...friends, friend]);
+    setShowAddFriend(false);
+    
+  }
+
   return (
     <div className="app">
      <div className="sidebar">
-        <FriendsList />
-        <FormAddFriend />
-        <Button>Add Friend</Button>
+        <FriendsList friends={friends} />
+
+        {showAddFriend && <FormAddFriend  onAddFriend={handleAddFriend}/>}
+      
+        <Button onClick={handleShowFriend}>{showAddFriend ?"Close":  "Add Friend"}</Button>
         </div>
         <FormSplitBill />
     </div>
@@ -35,11 +51,13 @@ export default function App() {
 }
 
 
-function FriendsList() {
+function FriendsList({friends}) {
+
+
   return (
     
       <ul>
-        {initialFriends.map((friend) => (
+        {friends.map((friend) => (
           <Friend key={friend.id} friend={friend} />
         ))}
       
@@ -48,8 +66,10 @@ function FriendsList() {
   );
 }
 
-function Button({children}) {
-  return <button className="button">{children}</button>;
+function Button({onClick, children}) {
+
+
+  return <button className="button" onClick={onClick}>{children}</button>;
   
 }
 
@@ -74,11 +94,48 @@ function Friend({friend}) {
   
 }
 
-function FormAddFriend() {
+function FormAddFriend({onAddFriend}) {
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("https://i.pravatar.cc/48");
+
+  function handleSubmit(e) {
+    e.preventDefault(); // prevent the form from submitting ie. refreshing the page
+
+    // Prevent empty name and image
+    if (!name || !image) return;
+
+
+    const id = Date.now();
+    const newFriend = {
+      id,
+      name,
+      image: `${image}?u=${id}`,
+      balance: 0,
+    };
+    // call the onAddFriend function from the parent component
+    onAddFriend(newFriend);
+    setName("");
+    setImage("https://i.pravatar.cc/48");
+  }
+
   return (
-    <form className="form-add-friend">
-      <input type="text" placeholder="Name" />
-      <input type="number" placeholder="Balance" />
+    <form className="form-add-friend" onSubmit={handleSubmit}>
+      <label>Add a Friend</label>
+     <input
+        placeholder="Name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <label>Image URL</label>
+      <input
+        placeholder="Image"
+        type="text"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      />
+     
       <Button>Add</Button>
     </form>
   );
